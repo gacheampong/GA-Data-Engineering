@@ -1,0 +1,83 @@
+## Set Directory
+setwd("~/Code/GA-Data-Engineering/")
+
+#2 load and install libraries
+if(!"RODBC" %in% installed.packages()) install.packages("RODBC")
+if(!"dplyr" %in% installed.packages()) install.packages("dplyr")
+if(!"jsonlite" %in% installed.packages()) install.packages("jsonlite")
+if(!"tidyr" %in% installed.packages()) install.packages("tidyr")
+if(!"doBy" %in% installed.packages()) install.packages("doBy")
+if(!"reshape2" %in% installed.packages()) install.packages("reshape2")
+# if(!"rmongodb" %in% installed.packages()) install.packages("rmongodb")
+if(!"mongolite" %in% installed.packages()) install.packages("mongolite")
+if(!"lubridate" %in% installed.packages()) install.packages("lubridate")
+if(!"foreach" %in% installed.packages()) install.packages("foreach")
+if(!"rJava" %in% installed.packages()) install.packages("rJava")
+if(!"RJDBC" %in% installed.packages()) install.packages("RJDBC")
+if(!"DBI" %in% installed.packages()) install.packages("DBI")
+if(!"data.table" %in% installed.packages()) install.packages("data.table")
+if(!"stringr" %in% installed.packages()) install.packages("stringr")
+if(!"knitr" %in% installed.packages()) install.packages("knitr")
+# if(!"mailR" %in% installed.packages()) install.packages("mailR")
+if(!"testthat" %in% installed.packages()) install.packages("testthat")
+if(!"httr" %in% installed.packages()) install.packages("httr")
+if(!"XML" %in% installed.packages()) install.packages("XML")
+if(!"openssl" %in% installed.packages()) install.packages("openssl")
+if(!"parallel" %in% installed.packages()) install.packages("parallel")
+if(!"doParallel" %in% installed.packages()) install.packages("doParallel")
+if(!"evaluate" %in% installed.packages()) install.packages("evaluate")
+if(!"uuid" %in% installed.packages()) install.packages("uuid")
+if(!"htmlTable" %in% installed.packages()) install.packages("htmlTable")
+if(!"snakecase" %in% installed.packages()) install.packages("snakecase")
+if(!"scales" %in% installed.packages()) install.packages("scales")
+if(!"RGoogleAnalytics" %in% installed.packages()) install.packages("RGoogleAnalytics")
+if(!"concatenate" %in% installed.packages()) install.packages("concatenate")
+if(!"lettercase" %in% installed.packages()) install.packages("lettercase")
+if(!"zoo" %in% installed.packages()) install.packages("zoo")
+
+library(RODBC)
+library(dplyr)
+library(jsonlite)
+library(tidyr)
+library(doBy)
+library(reshape2)
+# library(rmongodb)
+library(mongolite)
+library(lubridate)
+library(foreach)
+library(rJava)
+library(RJDBC)
+library(data.table)
+library(DBI)
+library(stringr)
+library(knitr)
+# library(mailR)
+library(testthat)
+library(httr)
+library(openssl)
+library(evaluate)
+library(uuid)
+library(htmlTable)
+library(snakecase)
+library(scales)
+# library(RGoogleAnalytics)
+library(concatenate)
+library(lettercase)
+library(zoo)
+library(parallel)
+
+gitGetCurrentBranch <- function(){
+  # get branches
+  branches <- system2(command = "git",args = "branch",stdout = T,stderr = T)
+  
+  # check for errors
+  if (!is.null(attr(x = branches,which = "status"))) stop(branches)
+  
+  # clean branch name
+  currentBranch <- branches[grepl(x = branches,pattern = "^\\*")]
+  currentBranch <- gsub(x = currentBranch,pattern = "^\\* ",replacement = "")
+  
+  return(currentBranch)
+}
+
+message(gitGetCurrentBranch())
